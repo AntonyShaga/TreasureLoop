@@ -7,7 +7,6 @@ import { IUser } from 'src/types/types'; // Убедись, что IUser пра�
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(private readonly configService: ConfigService) {
-        // Проверяем JWT_SECRET при инициализации
         const jwtSecret = configService.get<string>('JWT_SECRET');
         if (!jwtSecret) {
             throw new Error('JWT_SECRET is not defined!');
@@ -20,10 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    // Метод для валидации полезной нагрузки (payload) из токена
     async validate(payload: IUser) {
-        // Здесь можно добавить дополнительные проверки, например, искать пользователя по id в базе данных
-        return { id: payload.id, email: payload.email }; // Передаем только необходимые данные
+        return { id: payload.id, email: payload.email }; // Возвращаем необходимые данные пользователя
     }
 }
-
