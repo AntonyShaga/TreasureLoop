@@ -81,7 +81,7 @@ export class TransactionService {
                user: {id},
             },
             relations: {
-                //categories: true,
+                categories: true,
                 //user: true
             },
             order: {
