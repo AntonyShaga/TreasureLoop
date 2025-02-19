@@ -37,7 +37,7 @@ export class TransactionController {
 
     @Get(':type/find')
     @UseGuards(JwtAuthGuard)
-    findAllByType(@Req() req,@Param('typwe') type:string){
+    findAllByType(@Req() req,@Param('type') type:string){
         return this.transactionService.findAllByType(req.user.id, type)
     }
 
