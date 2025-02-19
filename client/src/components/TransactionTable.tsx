@@ -13,7 +13,6 @@ interface ITransactionTable {
 
 const TransactionTable: FC<ITransactionTable> = ({limit = 2}) => {
     const {transactions} = useLoaderData() as IRsponseTransactionLoader
-    console.log(transactions)
     const [data, setData] = useState<ITransaction[]>([])
     const [curentPage, setCurentPage] = useState<number>(1)
     const [totalPage, setTotalPage] = useState<number>(0)
@@ -21,7 +20,6 @@ const TransactionTable: FC<ITransactionTable> = ({limit = 2}) => {
     const featchTransaction = async (page:number) => {
         const response = await instance.get(`/transactions/pagination?page=${page}&limit=${limit}`)
         setData(response.data)
-        console.log(response.data)
         setTotalPage(Math.ceil(transactions.length / limit))
     }
     const handlePageChange  = (selectedItem: {selected:number}) => {
